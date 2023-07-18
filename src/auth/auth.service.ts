@@ -46,12 +46,7 @@ export class AuthService {
       },
     });
     if (!user) throw new ForbiddenException('Email or Password incorrect');
-    const isValid = await bcrypt.compare(
-      dto.password,
-      (
-        await user
-      ).hashedPassword,
-    );
+    const isValid = await bcrypt.compare(dto.password, user.hashedPassword);
     if (!isValid) throw new ForbiddenException('Email or Password incorrect');
     return this.generateJwt(user.id, user.hashedPassword);
   }
