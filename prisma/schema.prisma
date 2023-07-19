@@ -25,7 +25,7 @@ model Task {
   createdAt   DateTime @default(now())
   updateAt    DateTime @updatedAt
   title       String
-  description String
+  description String?
   userId      Int
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
