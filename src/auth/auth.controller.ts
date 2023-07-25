@@ -44,7 +44,7 @@ export class AuthController {
     const jwt = await this.authService.login(dto);
     res.cookie('access_token', jwt.accessToken, {
       httpOnly: true,
-      secure: false, // localではpostmanで動作確認するのでfalse.本番ではtrueでhttpsオンリーにする必要ある
+      secure: true, // localではpostmanで動作確認するのでfalse.本番ではtrueでhttpsオンリーにする必要ある
       sameSite: 'none',
       path: '/',
     });
@@ -58,7 +58,7 @@ export class AuthController {
   logout(@Req() req: Request, @Res({ passthrough: true }) res: Response): Msg {
     res.cookie('access_token', '', {
       httpOnly: true, // localではpostmanで動作確認するのでfalse.本番ではtrueでhttpsオンリーにする必要ある
-      secure: false,
+      secure: true,
       sameSite: 'none',
       path: '/',
     });
