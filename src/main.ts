@@ -8,7 +8,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
   app.enableCors({
     credentials: true, // frontとbackのやり取りの認証をcookieベースのjwtで行うのでtrue
-    origin: ['http://localhost:3000'], // next側からのアクセスを許可
+    origin: ['http://localhost:3000', 'https://next-todo-sample.vercel.app'], // next側からのアクセスを許可
   });
   app.use(cookieParser());
   await app.listen(3005);
